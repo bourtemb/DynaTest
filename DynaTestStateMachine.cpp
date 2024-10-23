@@ -46,8 +46,8 @@ namespace DynaTest_ns
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::is_DynDoubleRO_allowed()
- *	Description : Execution allowed for DynDoubleRO attribute
+ *	Method     : DynaTest::is_DynDoubleRO_allowed()
+ *	Description: Execution allowed for DynDoubleRO attribute
  */
 //--------------------------------------------------------
 bool DynaTest::is_DynDoubleRO_allowed(TANGO_UNUSED(Tango::AttReqType type))
@@ -62,8 +62,8 @@ bool DynaTest::is_DynDoubleRO_allowed(TANGO_UNUSED(Tango::AttReqType type))
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::is_DynDoubleRW_allowed()
- *	Description : Execution allowed for DynDoubleRW attribute
+ *	Method     : DynaTest::is_DynDoubleRW_allowed()
+ *	Description: Execution allowed for DynDoubleRW attribute
  */
 //--------------------------------------------------------
 bool DynaTest::is_DynDoubleRW_allowed(TANGO_UNUSED(Tango::AttReqType type))
@@ -82,8 +82,8 @@ bool DynaTest::is_DynDoubleRW_allowed(TANGO_UNUSED(Tango::AttReqType type))
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::is_DynLongRO_allowed()
- *	Description : Execution allowed for DynLongRO attribute
+ *	Method     : DynaTest::is_DynLongRO_allowed()
+ *	Description: Execution allowed for DynLongRO attribute
  */
 //--------------------------------------------------------
 bool DynaTest::is_DynLongRO_allowed(TANGO_UNUSED(Tango::AttReqType type))
@@ -98,8 +98,8 @@ bool DynaTest::is_DynLongRO_allowed(TANGO_UNUSED(Tango::AttReqType type))
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::is_DynLongRW_allowed()
- *	Description : Execution allowed for DynLongRW attribute
+ *	Method     : DynaTest::is_DynLongRW_allowed()
+ *	Description: Execution allowed for DynLongRW attribute
  */
 //--------------------------------------------------------
 bool DynaTest::is_DynLongRW_allowed(TANGO_UNUSED(Tango::AttReqType type))

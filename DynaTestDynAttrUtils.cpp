@@ -64,10 +64,10 @@ namespace DynaTest_ns
 /**
  *	Add a DynDoubleRO dynamic attribute.
  *
- *  parameter attname: attribute name to be cretated and added.
+ *  parameter attname: attribute name to be created and added.
  */
 //--------------------------------------------------------
-void DynaTest::add_DynDoubleRO_dynamic_attribute(string attname)
+void DynaTest::add_DynDoubleRO_dynamic_attribute(std::string attname)
 {
 	//	Attribute : DynDoubleRO
 	DynDoubleROAttrib	*dyndoublero = new DynDoubleROAttrib(attname);
@@ -86,7 +86,6 @@ void DynaTest::add_DynDoubleRO_dynamic_attribute(string attname)
 	//	min_warning	not set for DynDoubleRO
 	//	delta_t	not set for DynDoubleRO
 	//	delta_val	not set for DynDoubleRO
-	
 	/*----- PROTECTED REGION ID(DynaTest::att_DynDoubleRO_dynamic_attribute) ENABLED START -----*/
 	
 	
@@ -105,13 +104,13 @@ void DynaTest::add_DynDoubleRO_dynamic_attribute(string attname)
  *  parameter attname: attribute name to be removed.
  */
 //--------------------------------------------------------
-void DynaTest::remove_DynDoubleRO_dynamic_attribute(string attname)
+void DynaTest::remove_DynDoubleRO_dynamic_attribute(std::string attname)
 {
 	remove_attribute(attname, true, Tango::Util::instance()->_UseDb);
-	map<string,Tango::DevDouble>::iterator ite;
-    if ((ite=DynDoubleRO_data.find(attname))!=DynDoubleRO_data.end())
-    {
-    	/*----- PROTECTED REGION ID(DynaTest::remove_DynDoubleRO_dynamic_attribute) ENABLED START -----*/
+	std::map<std::string,Tango::DevDouble>::iterator ite;
+	if ((ite=DynDoubleRO_data.find(attname))!=DynDoubleRO_data.end())
+	{
+		/*----- PROTECTED REGION ID(DynaTest::remove_DynDoubleRO_dynamic_attribute) ENABLED START -----*/
     	
     	/*----- PROTECTED REGION END -----*/	//	DynaTest::remove_DynDoubleRO_dynamic_attribute
 		DynDoubleRO_data.erase(ite);
@@ -121,10 +120,10 @@ void DynaTest::remove_DynDoubleRO_dynamic_attribute(string attname)
 /**
  *	Add a DynDoubleRW dynamic attribute.
  *
- *  parameter attname: attribute name to be cretated and added.
+ *  parameter attname: attribute name to be created and added.
  */
 //--------------------------------------------------------
-void DynaTest::add_DynDoubleRW_dynamic_attribute(string attname)
+void DynaTest::add_DynDoubleRW_dynamic_attribute(std::string attname)
 {
 	//	Attribute : DynDoubleRW
 	DynDoubleRWAttrib	*dyndoublerw = new DynDoubleRWAttrib(attname);
@@ -143,7 +142,6 @@ void DynaTest::add_DynDoubleRW_dynamic_attribute(string attname)
 	//	min_warning	not set for DynDoubleRW
 	//	delta_t	not set for DynDoubleRW
 	//	delta_val	not set for DynDoubleRW
-	
 	/*----- PROTECTED REGION ID(DynaTest::att_DynDoubleRW_dynamic_attribute) ENABLED START -----*/
 	
 	
@@ -162,13 +160,13 @@ void DynaTest::add_DynDoubleRW_dynamic_attribute(string attname)
  *  parameter attname: attribute name to be removed.
  */
 //--------------------------------------------------------
-void DynaTest::remove_DynDoubleRW_dynamic_attribute(string attname)
+void DynaTest::remove_DynDoubleRW_dynamic_attribute(std::string attname)
 {
 	remove_attribute(attname, true, Tango::Util::instance()->_UseDb);
-	map<string,Tango::DevDouble>::iterator ite;
-    if ((ite=DynDoubleRW_data.find(attname))!=DynDoubleRW_data.end())
-    {
-    	/*----- PROTECTED REGION ID(DynaTest::remove_DynDoubleRW_dynamic_attribute) ENABLED START -----*/
+	std::map<std::string,Tango::DevDouble>::iterator ite;
+	if ((ite=DynDoubleRW_data.find(attname))!=DynDoubleRW_data.end())
+	{
+		/*----- PROTECTED REGION ID(DynaTest::remove_DynDoubleRW_dynamic_attribute) ENABLED START -----*/
     	
     	/*----- PROTECTED REGION END -----*/	//	DynaTest::remove_DynDoubleRW_dynamic_attribute
 		DynDoubleRW_data.erase(ite);
@@ -178,10 +176,10 @@ void DynaTest::remove_DynDoubleRW_dynamic_attribute(string attname)
 /**
  *	Add a DynLongRO dynamic attribute.
  *
- *  parameter attname: attribute name to be cretated and added.
+ *  parameter attname: attribute name to be created and added.
  */
 //--------------------------------------------------------
-void DynaTest::add_DynLongRO_dynamic_attribute(string attname)
+void DynaTest::add_DynLongRO_dynamic_attribute(std::string attname)
 {
 	//	Attribute : DynLongRO
 	DynLongROAttrib	*dynlongro = new DynLongROAttrib(attname);
@@ -200,7 +198,6 @@ void DynaTest::add_DynLongRO_dynamic_attribute(string attname)
 	//	min_warning	not set for DynLongRO
 	//	delta_t	not set for DynLongRO
 	//	delta_val	not set for DynLongRO
-	
 	/*----- PROTECTED REGION ID(DynaTest::att_DynLongRO_dynamic_attribute) ENABLED START -----*/
 	
 	
@@ -219,13 +216,13 @@ void DynaTest::add_DynLongRO_dynamic_attribute(string attname)
  *  parameter attname: attribute name to be removed.
  */
 //--------------------------------------------------------
-void DynaTest::remove_DynLongRO_dynamic_attribute(string attname)
+void DynaTest::remove_DynLongRO_dynamic_attribute(std::string attname)
 {
 	remove_attribute(attname, true, Tango::Util::instance()->_UseDb);
-	map<string,Tango::DevLong>::iterator ite;
-    if ((ite=DynLongRO_data.find(attname))!=DynLongRO_data.end())
-    {
-    	/*----- PROTECTED REGION ID(DynaTest::remove_DynLongRO_dynamic_attribute) ENABLED START -----*/
+	std::map<std::string,Tango::DevLong>::iterator ite;
+	if ((ite=DynLongRO_data.find(attname))!=DynLongRO_data.end())
+	{
+		/*----- PROTECTED REGION ID(DynaTest::remove_DynLongRO_dynamic_attribute) ENABLED START -----*/
     	
     	/*----- PROTECTED REGION END -----*/	//	DynaTest::remove_DynLongRO_dynamic_attribute
 		DynLongRO_data.erase(ite);
@@ -235,10 +232,10 @@ void DynaTest::remove_DynLongRO_dynamic_attribute(string attname)
 /**
  *	Add a DynLongRW dynamic attribute.
  *
- *  parameter attname: attribute name to be cretated and added.
+ *  parameter attname: attribute name to be created and added.
  */
 //--------------------------------------------------------
-void DynaTest::add_DynLongRW_dynamic_attribute(string attname)
+void DynaTest::add_DynLongRW_dynamic_attribute(std::string attname)
 {
 	//	Attribute : DynLongRW
 	DynLongRWAttrib	*dynlongrw = new DynLongRWAttrib(attname);
@@ -257,7 +254,6 @@ void DynaTest::add_DynLongRW_dynamic_attribute(string attname)
 	//	min_warning	not set for DynLongRW
 	//	delta_t	not set for DynLongRW
 	//	delta_val	not set for DynLongRW
-	
 	/*----- PROTECTED REGION ID(DynaTest::att_DynLongRW_dynamic_attribute) ENABLED START -----*/
 	
 	
@@ -276,13 +272,13 @@ void DynaTest::add_DynLongRW_dynamic_attribute(string attname)
  *  parameter attname: attribute name to be removed.
  */
 //--------------------------------------------------------
-void DynaTest::remove_DynLongRW_dynamic_attribute(string attname)
+void DynaTest::remove_DynLongRW_dynamic_attribute(std::string attname)
 {
 	remove_attribute(attname, true, Tango::Util::instance()->_UseDb);
-	map<string,Tango::DevLong>::iterator ite;
-    if ((ite=DynLongRW_data.find(attname))!=DynLongRW_data.end())
-    {
-    	/*----- PROTECTED REGION ID(DynaTest::remove_DynLongRW_dynamic_attribute) ENABLED START -----*/
+	std::map<std::string,Tango::DevLong>::iterator ite;
+	if ((ite=DynLongRW_data.find(attname))!=DynLongRW_data.end())
+	{
+		/*----- PROTECTED REGION ID(DynaTest::remove_DynLongRW_dynamic_attribute) ENABLED START -----*/
     	
     	/*----- PROTECTED REGION END -----*/	//	DynaTest::remove_DynLongRW_dynamic_attribute
 		DynLongRW_data.erase(ite);
@@ -291,7 +287,7 @@ void DynaTest::remove_DynLongRW_dynamic_attribute(string attname)
 
 
 //============================================================
-//	Tool methods to get pointer on attribute data buffer 
+//	Tool methods to get pointer on attribute data buffer
 //============================================================
 //--------------------------------------------------------
 /**
@@ -300,18 +296,18 @@ void DynaTest::remove_DynLongRW_dynamic_attribute(string attname)
  *  parameter attname: the specified attribute name.
  */
 //--------------------------------------------------------
-Tango::DevDouble *DynaTest::get_DynDoubleRO_data_ptr(string &name)
+Tango::DevDouble *DynaTest::get_DynDoubleRO_data_ptr(std::string &name)
 {
-	map<string,Tango::DevDouble>::iterator ite;
-    if ((ite=DynDoubleRO_data.find(name))==DynDoubleRO_data.end())
-    {
+	std::map<std::string,Tango::DevDouble>::iterator ite;
+	if ((ite=DynDoubleRO_data.find(name))==DynDoubleRO_data.end())
+	{
 		TangoSys_OMemStream	tms;
 		tms << "Dynamic attribute " << name << " has not been created";
 		Tango::Except::throw_exception(
 					(const char *)"ATTRIBUTE_NOT_FOUND",
 					tms.str().c_str(),
 					(const char *)"DynaTest::get_DynDoubleRO_data_ptr()");
-    }
+	}
 	return  &(ite->second);
 }
 //--------------------------------------------------------
@@ -321,18 +317,18 @@ Tango::DevDouble *DynaTest::get_DynDoubleRO_data_ptr(string &name)
  *  parameter attname: the specified attribute name.
  */
 //--------------------------------------------------------
-Tango::DevDouble *DynaTest::get_DynDoubleRW_data_ptr(string &name)
+Tango::DevDouble *DynaTest::get_DynDoubleRW_data_ptr(std::string &name)
 {
-	map<string,Tango::DevDouble>::iterator ite;
-    if ((ite=DynDoubleRW_data.find(name))==DynDoubleRW_data.end())
-    {
+	std::map<std::string,Tango::DevDouble>::iterator ite;
+	if ((ite=DynDoubleRW_data.find(name))==DynDoubleRW_data.end())
+	{
 		TangoSys_OMemStream	tms;
 		tms << "Dynamic attribute " << name << " has not been created";
 		Tango::Except::throw_exception(
 					(const char *)"ATTRIBUTE_NOT_FOUND",
 					tms.str().c_str(),
 					(const char *)"DynaTest::get_DynDoubleRW_data_ptr()");
-    }
+	}
 	return  &(ite->second);
 }
 //--------------------------------------------------------
@@ -342,18 +338,18 @@ Tango::DevDouble *DynaTest::get_DynDoubleRW_data_ptr(string &name)
  *  parameter attname: the specified attribute name.
  */
 //--------------------------------------------------------
-Tango::DevLong *DynaTest::get_DynLongRO_data_ptr(string &name)
+Tango::DevLong *DynaTest::get_DynLongRO_data_ptr(std::string &name)
 {
-	map<string,Tango::DevLong>::iterator ite;
-    if ((ite=DynLongRO_data.find(name))==DynLongRO_data.end())
-    {
+	std::map<std::string,Tango::DevLong>::iterator ite;
+	if ((ite=DynLongRO_data.find(name))==DynLongRO_data.end())
+	{
 		TangoSys_OMemStream	tms;
 		tms << "Dynamic attribute " << name << " has not been created";
 		Tango::Except::throw_exception(
 					(const char *)"ATTRIBUTE_NOT_FOUND",
 					tms.str().c_str(),
 					(const char *)"DynaTest::get_DynLongRO_data_ptr()");
-    }
+	}
 	return  &(ite->second);
 }
 //--------------------------------------------------------
@@ -363,18 +359,18 @@ Tango::DevLong *DynaTest::get_DynLongRO_data_ptr(string &name)
  *  parameter attname: the specified attribute name.
  */
 //--------------------------------------------------------
-Tango::DevLong *DynaTest::get_DynLongRW_data_ptr(string &name)
+Tango::DevLong *DynaTest::get_DynLongRW_data_ptr(std::string &name)
 {
-	map<string,Tango::DevLong>::iterator ite;
-    if ((ite=DynLongRW_data.find(name))==DynLongRW_data.end())
-    {
+	std::map<std::string,Tango::DevLong>::iterator ite;
+	if ((ite=DynLongRW_data.find(name))==DynLongRW_data.end())
+	{
 		TangoSys_OMemStream	tms;
 		tms << "Dynamic attribute " << name << " has not been created";
 		Tango::Except::throw_exception(
 					(const char *)"ATTRIBUTE_NOT_FOUND",
 					tms.str().c_str(),
 					(const char *)"DynaTest::get_DynLongRW_data_ptr()");
-    }
+	}
 	return  &(ite->second);
 }
 
