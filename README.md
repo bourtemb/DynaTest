@@ -1,13 +1,14 @@
 # DynaTest
 
 ## Description
-A simple Tango class which can be used to test the Tango dynamic attributes features.  
+A simple Tango class which can be used to test the Tango dynamic attributes features.
 
-It was created to experiment with Tango dynamic attributes features and to help 
+It was created to experiment with Tango dynamic attributes features and to help
 identifying the current limitations.
 
 ## Build
-`make`
+- `cmake -B build -S .`
+- `cmake --build build`
 
 If this does not work for your Tango installation, you can use Pogo to regenerate a Makefile or a CMakefile.txt that fits your install settings.
 

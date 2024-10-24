@@ -63,17 +63,20 @@ namespace DynaTest_ns
 //===================================================================
 DynaTestClass *DynaTestClass::_instance = NULL;
 
+//===================================================================
+//	Class constants
+//===================================================================
 //--------------------------------------------------------
 /**
- * method : 		DynaTestClass::DynaTestClass(string &s)
+ * method : 		DynaTestClass::DynaTestClass(std::string &s)
  * description : 	constructor for the DynaTestClass
  *
  * @param s	The class name
  */
 //--------------------------------------------------------
-DynaTestClass::DynaTestClass(string &s):Tango::DeviceClass(s)
+DynaTestClass::DynaTestClass(std::string &s):Tango::DeviceClass(s)
 {
-	cout2 << "Entering DynaTestClass constructor" << endl;
+	TANGO_LOG_INFO << "Entering DynaTestClass constructor" << std::endl;
 	set_default_property();
 	write_class_property();
 
@@ -81,7 +84,7 @@ DynaTestClass::DynaTestClass(string &s):Tango::DeviceClass(s)
 	
 	/*----- PROTECTED REGION END -----*/	//	DynaTestClass::constructor
 
-	cout2 << "Leaving DynaTestClass constructor" << endl;
+	TANGO_LOG_INFO << "Leaving DynaTestClass constructor" << std::endl;
 }
 
 //--------------------------------------------------------
@@ -115,10 +118,10 @@ DynaTestClass *DynaTestClass::init(const char *name)
 	{
 		try
 		{
-			string s(name);
+			std::string s(name);
 			_instance = new DynaTestClass(s);
 		}
-		catch (bad_alloc &)
+		catch (std::bad_alloc &)
 		{
 			throw;
 		}
@@ -137,7 +140,7 @@ DynaTestClass *DynaTestClass::instance()
 {
 	if (_instance == NULL)
 	{
-		cerr << "Class is not initialised !!" << endl;
+		std::cerr << "Class is not initialized !!" << std::endl;
 		exit(-1);
 	}
 	return _instance;
@@ -154,11 +157,11 @@ DynaTestClass *DynaTestClass::instance()
 //===================================================================
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::get_class_property()
- *	Description : Get the class property for specified name.
+ *	Method     : DynaTestClass::get_class_property()
+ *	Description: Get the class property for specified name.
  */
 //--------------------------------------------------------
-Tango::DbDatum DynaTestClass::get_class_property(string &prop_name)
+Tango::DbDatum DynaTestClass::get_class_property(std::string &prop_name)
 {
 	for (unsigned int i=0 ; i<cl_prop.size() ; i++)
 		if (cl_prop[i].name == prop_name)
@@ -169,11 +172,11 @@ Tango::DbDatum DynaTestClass::get_class_property(string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::get_default_device_property()
- *	Description : Return the default value for device property.
+ *	Method     : DynaTestClass::get_default_device_property()
+ *	Description: Return the default value for device property.
  */
 //--------------------------------------------------------
-Tango::DbDatum DynaTestClass::get_default_device_property(string &prop_name)
+Tango::DbDatum DynaTestClass::get_default_device_property(std::string &prop_name)
 {
 	for (unsigned int i=0 ; i<dev_def_prop.size() ; i++)
 		if (dev_def_prop[i].name == prop_name)
@@ -184,11 +187,11 @@ Tango::DbDatum DynaTestClass::get_default_device_property(string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::get_default_class_property()
- *	Description : Return the default value for class property.
+ *	Method     : DynaTestClass::get_default_class_property()
+ *	Description: Return the default value for class property.
  */
 //--------------------------------------------------------
-Tango::DbDatum DynaTestClass::get_default_class_property(string &prop_name)
+Tango::DbDatum DynaTestClass::get_default_class_property(std::string &prop_name)
 {
 	for (unsigned int i=0 ; i<cl_def_prop.size() ; i++)
 		if (cl_def_prop[i].name == prop_name)
@@ -200,8 +203,8 @@ Tango::DbDatum DynaTestClass::get_default_class_property(string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::set_default_property()
- *	Description : Set default property (class and device) for wizard.
+ *	Method     : DynaTestClass::set_default_property()
+ *	Description: Set default property (class and device) for wizard.
  *                For each property, add to wizard property name and description.
  *                If default value has been set, add it to wizard property and
  *                store it in a DbDatum.
@@ -209,10 +212,10 @@ Tango::DbDatum DynaTestClass::get_default_class_property(string &prop_name)
 //--------------------------------------------------------
 void DynaTestClass::set_default_property()
 {
-	string	prop_name;
-	string	prop_desc;
-	string	prop_def;
-	vector<string>	vect_data;
+	std::string	prop_name;
+	std::string	prop_desc;
+	std::string	prop_def;
+	std::vector<std::string>	vect_data;
 
 	//	Set Default Class Properties
 
@@ -273,8 +276,8 @@ void DynaTestClass::set_default_property()
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::write_class_property()
- *	Description : Set class description fields as property in database
+ *	Method     : DynaTestClass::write_class_property()
+ *	Description: Set class description fields as property in database
  */
 //--------------------------------------------------------
 void DynaTestClass::write_class_property()
@@ -284,26 +287,25 @@ void DynaTestClass::write_class_property()
 		return;
 
 	Tango::DbData	data;
-	string	classname = get_name();
-	string	header;
-	string::size_type	start, end;
+	std::string	classname = get_name();
+	std::string	header;
 
 	//	Put title
 	Tango::DbDatum	title("ProjectTitle");
-	string	str_title("DynaTest");
+	std::string	str_title("DynaTest");
 	title << str_title;
 	data.push_back(title);
 
 	//	Put Description
 	Tango::DbDatum	description("Description");
-	vector<string>	str_desc;
+	std::vector<std::string>	str_desc;
 	str_desc.push_back("Test Class to test dynamic attributes limitations");
 	description << str_desc;
 	data.push_back(description);
 
 	//  Put inheritance
 	Tango::DbDatum	inher_datum("InheritedFrom");
-	vector<string> inheritance;
+	std::vector<std::string> inheritance;
 	inheritance.push_back("TANGO_BASE_CLASS");
 	inher_datum << inheritance;
 	data.push_back(inher_datum);
@@ -318,8 +320,8 @@ void DynaTestClass::write_class_property()
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::device_factory()
- *	Description : Create the device object(s)
+ *	Method     : DynaTestClass::device_factory()
+ *	Description: Create the device object(s)
  *                and store them in the device list
  */
 //--------------------------------------------------------
@@ -334,7 +336,7 @@ void DynaTestClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
 	//	Create devices and add it into the device list
 	for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
 	{
-		cout4 << "Device name : " << (*devlist_ptr)[i].in() << endl;
+		TANGO_LOG_DEBUG << "Device name : " << (*devlist_ptr)[i].in() << std::endl;
 		device_list.push_back(new DynaTest(this, (*devlist_ptr)[i]));
 	}
 
@@ -363,12 +365,12 @@ void DynaTestClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
 }
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::attribute_factory()
- *	Description : Create the attribute object(s)
+ *	Method     : DynaTestClass::attribute_factory()
+ *	Description: Create the attribute object(s)
  *                and store them in the attribute list
  */
 //--------------------------------------------------------
-void DynaTestClass::attribute_factory(vector<Tango::Attr *> &att_list)
+void DynaTestClass::attribute_factory(std::vector<Tango::Attr *> &)
 {
 	/*----- PROTECTED REGION ID(DynaTestClass::attribute_factory_before) ENABLED START -----*/
 	
@@ -386,8 +388,8 @@ void DynaTestClass::attribute_factory(vector<Tango::Attr *> &att_list)
 }
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::pipe_factory()
- *	Description : Create the pipe object(s)
+ *	Method     : DynaTestClass::pipe_factory()
+ *	Description: Create the pipe object(s)
  *                and store them in the pipe list
  */
 //--------------------------------------------------------
@@ -406,8 +408,8 @@ void DynaTestClass::pipe_factory()
 }
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::command_factory()
- *	Description : Create the command object(s)
+ *	Method     : DynaTestClass::command_factory()
+ *	Description: Create the command object(s)
  *                and store them in the command list
  */
 //--------------------------------------------------------
@@ -436,19 +438,19 @@ void DynaTestClass::command_factory()
  * method : 		DynaTestClass::create_static_attribute_list
  * description : 	Create the a list of static attributes
  *
- * @param	att_list	the ceated attribute list
+ * @param	att_list	the created attribute list
  */
 //--------------------------------------------------------
-void DynaTestClass::create_static_attribute_list(vector<Tango::Attr *> &att_list)
+void DynaTestClass::create_static_attribute_list(std::vector<Tango::Attr *> &att_list)
 {
 	for (unsigned long i=0 ; i<att_list.size() ; i++)
 	{
-		string att_name(att_list[i]->get_name());
-		transform(att_name.begin(), att_name.end(), att_name.begin(), ::tolower);
+		std::string att_name(att_list[i]->get_name());
+		std::transform(att_name.begin(), att_name.end(), att_name.begin(), ::tolower);
 		defaultAttList.push_back(att_name);
 	}
 
-	cout2 << defaultAttList.size() << " attributes in default list" << endl;
+	TANGO_LOG_INFO << defaultAttList.size() << " attributes in default list" << std::endl;
 
 	/*----- PROTECTED REGION ID(DynaTestClass::create_static_att_list) ENABLED START -----*/
 	
@@ -465,26 +467,26 @@ void DynaTestClass::create_static_attribute_list(vector<Tango::Attr *> &att_list
  * @param	list of all attributes
  */
 //--------------------------------------------------------
-void DynaTestClass::erase_dynamic_attributes(const Tango::DevVarStringArray *devlist_ptr, vector<Tango::Attr *> &att_list)
+void DynaTestClass::erase_dynamic_attributes(const Tango::DevVarStringArray *devlist_ptr, std::vector<Tango::Attr *> &att_list)
 {
 	Tango::Util *tg = Tango::Util::instance();
 
 	for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
 	{
-		Tango::DeviceImpl *dev_impl = tg->get_device_by_name(((string)(*devlist_ptr)[i]).c_str());
+		Tango::DeviceImpl *dev_impl = tg->get_device_by_name(((std::string)(*devlist_ptr)[i]).c_str());
 		DynaTest *dev = static_cast<DynaTest *> (dev_impl);
 
-		vector<Tango::Attribute *> &dev_att_list = dev->get_device_attr()->get_attribute_list();
-		vector<Tango::Attribute *>::iterator ite_att;
+		std::vector<Tango::Attribute *> &dev_att_list = dev->get_device_attr()->get_attribute_list();
+		std::vector<Tango::Attribute *>::iterator ite_att;
 		for (ite_att=dev_att_list.begin() ; ite_att != dev_att_list.end() ; ++ite_att)
 		{
-			string att_name((*ite_att)->get_name_lower());
+			std::string att_name((*ite_att)->get_name_lower());
 			if ((att_name == "state") || (att_name == "status"))
 				continue;
-			vector<string>::iterator ite_str = find(defaultAttList.begin(), defaultAttList.end(), att_name);
+			std::vector<std::string>::iterator ite_str = find(defaultAttList.begin(), defaultAttList.end(), att_name);
 			if (ite_str == defaultAttList.end())
 			{
-				cout2 << att_name << " is a UNWANTED dynamic attribute for device " << (*devlist_ptr)[i] << endl;
+				TANGO_LOG_INFO << att_name << " is a UNWANTED dynamic attribute for device " << (*devlist_ptr)[i] << std::endl;
 				Tango::Attribute &att = dev->get_device_attr()->get_attr_by_name(att_name.c_str());
 				dev->remove_attribute(att_list[att.get_attr_idx()], true, false);
 				--ite_att;
@@ -498,13 +500,13 @@ void DynaTestClass::erase_dynamic_attributes(const Tango::DevVarStringArray *dev
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTestClass::get_attr_object_by_name()
- *	Description : returns Tango::Attr * object found by name
+ *	Method     : DynaTestClass::get_attr_object_by_name()
+ *	Description: returns Tango::Attr * object found by name
  */
 //--------------------------------------------------------
-Tango::Attr *DynaTestClass::get_attr_object_by_name(vector<Tango::Attr *> &att_list, string attname)
+Tango::Attr *DynaTestClass::get_attr_object_by_name(std::vector<Tango::Attr *> &att_list, std::string attname)
 {
-	vector<Tango::Attr *>::iterator it;
+	std::vector<Tango::Attr *>::iterator it;
 	for (it=att_list.begin() ; it<att_list.end() ; ++it)
 		if ((*it)->get_name()==attname)
 			return (*it);

@@ -32,7 +32,7 @@
 //        (Program Obviously used to Generate tango Object)
 //=============================================================================
 
-#include <tango.h>
+#include <tango/tango.h>
 #include <DynaTestClass.h>
 
 //	Add class header files if needed

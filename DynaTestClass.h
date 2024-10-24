@@ -37,7 +37,7 @@
 #ifndef DynaTestClass_H
 #define DynaTestClass_H
 
-#include <tango.h>
+#include <tango/tango.h>
 #include <DynaTest.h>
 
 
@@ -58,9 +58,9 @@ namespace DynaTest_ns
 class DynDoubleROAttrib: public Tango::Attr
 {
 public:
-	DynDoubleROAttrib(const string &att_name):Attr(att_name.c_str(), 
-			Tango::DEV_DOUBLE, Tango::READ) {};
-	~DynDoubleROAttrib() {};
+	DynDoubleROAttrib(const std::string &att_name):Attr(att_name.c_str(),
+			Tango::DEV_DOUBLE, Tango::READ) {}
+	~DynDoubleROAttrib() {}
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<DynaTest *>(dev))->read_DynDoubleRO(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -71,9 +71,9 @@ public:
 class DynDoubleRWAttrib: public Tango::Attr
 {
 public:
-	DynDoubleRWAttrib(const string &att_name):Attr(att_name.c_str(), 
-			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
-	~DynDoubleRWAttrib() {};
+	DynDoubleRWAttrib(const std::string &att_name):Attr(att_name.c_str(),
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {}
+	~DynDoubleRWAttrib() {}
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<DynaTest *>(dev))->read_DynDoubleRW(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -86,9 +86,9 @@ public:
 class DynLongROAttrib: public Tango::Attr
 {
 public:
-	DynLongROAttrib(const string &att_name):Attr(att_name.c_str(), 
-			Tango::DEV_LONG, Tango::READ) {};
-	~DynLongROAttrib() {};
+	DynLongROAttrib(const std::string &att_name):Attr(att_name.c_str(),
+			Tango::DEV_LONG, Tango::READ) {}
+	~DynLongROAttrib() {}
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<DynaTest *>(dev))->read_DynLongRO(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -99,9 +99,9 @@ public:
 class DynLongRWAttrib: public Tango::Attr
 {
 public:
-	DynLongRWAttrib(const string &att_name):Attr(att_name.c_str(), 
-			Tango::DEV_LONG, Tango::READ_WRITE) {};
-	~DynLongRWAttrib() {};
+	DynLongRWAttrib(const std::string &att_name):Attr(att_name.c_str(),
+			Tango::DEV_LONG, Tango::READ_WRITE) {}
+	~DynLongRWAttrib() {}
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<DynaTest *>(dev))->read_DynLongRW(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -121,43 +121,43 @@ class __declspec(dllexport)  DynaTestClass : public Tango::DeviceClass
 class DynaTestClass : public Tango::DeviceClass
 #endif
 {
-	/*----- PROTECTED REGION ID(DynaTestClass::Additionnal DServer data members) ENABLED START -----*/
-	
-	
-	/*----- PROTECTED REGION END -----*/	//	DynaTestClass::Additionnal DServer data members
+	/*----- PROTECTED REGION ID(DynaTestClass::Additional DServer data members) ENABLED START -----*/
+	/* clang-format on */
+	//	Add your own code
+	/* clang-format off */
+	/*----- PROTECTED REGION END -----*/	//	DynaTestClass::Additional DServer data members
 
 	public:
 		//	write class properties data members
 		Tango::DbData	cl_prop;
 		Tango::DbData	cl_def_prop;
 		Tango::DbData	dev_def_prop;
-	
 		//	Method prototypes
 		static DynaTestClass *init(const char *);
 		static DynaTestClass *instance();
 		~DynaTestClass();
-		Tango::DbDatum	get_class_property(string &);
-		Tango::DbDatum	get_default_device_property(string &);
-		Tango::DbDatum	get_default_class_property(string &);
-	
+		Tango::DbDatum	get_class_property(std::string &);
+		Tango::DbDatum	get_default_device_property(std::string &);
+		Tango::DbDatum	get_default_class_property(std::string &);
+
 	protected:
-		DynaTestClass(string &);
+		DynaTestClass(std::string &);
 		static DynaTestClass *_instance;
 		void command_factory();
-		void attribute_factory(vector<Tango::Attr *> &);
+		void attribute_factory(std::vector<Tango::Attr *> &);
 		void pipe_factory();
 		void write_class_property();
 		void set_default_property();
 		void get_class_property();
-		string get_cvstag();
-		string get_cvsroot();
-	
+		std::string get_cvstag();
+		std::string get_cvsroot();
+
 	private:
-		void device_factory(const Tango::DevVarStringArray *);
-		void create_static_attribute_list(vector<Tango::Attr *> &);
-		void erase_dynamic_attributes(const Tango::DevVarStringArray *,vector<Tango::Attr *> &);
-		vector<string>	defaultAttList;
-		Tango::Attr *get_attr_object_by_name(vector<Tango::Attr *> &att_list, string attname);
+		void device_factory(TANGO_UNUSED(const Tango::DevVarStringArray *));
+		void create_static_attribute_list(std::vector<Tango::Attr *> &);
+		void erase_dynamic_attributes(const Tango::DevVarStringArray *,std::vector<Tango::Attr *> &);
+		std::vector<std::string>	defaultAttList;
+		Tango::Attr *get_attr_object_by_name(std::vector<Tango::Attr *> &att_list, std::string attname);
 };
 
 }	//	End of namespace

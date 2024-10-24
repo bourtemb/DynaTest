@@ -33,15 +33,26 @@
 #ifndef DynaTest_H
 #define DynaTest_H
 
-#include <tango.h>
+#include <tango/tango.h>
 
 
 /*----- PROTECTED REGION END -----*/	//	DynaTest.h
+
+#ifdef TANGO_LOG
+	// cppTango after c934adea (Merge branch 'remove-cout-definition' into 'main', 2022-05-23)
+	// nothing to do
+#else
+	// cppTango 9.3-backports and older
+	#define TANGO_LOG       cout
+	#define TANGO_LOG_INFO  cout2
+	#define TANGO_LOG_DEBUG cout3
+#endif // TANGO_LOG
 
 /**
  *  DynaTest class description:
  *    Test Class to test dynamic attributes limitations
  */
+
 
 namespace DynaTest_ns
 {
@@ -63,13 +74,13 @@ class DynaTest : public TANGO_BASE_CLASS
 //	Device property data members
 public:
 	//	DynDoubleROAttrNames:	List of names of Double Read Only Attributes to create
-	vector<string>	dynDoubleROAttrNames;
+	std::vector<std::string>	dynDoubleROAttrNames;
 	//	DynDoubleRWAttrNames:	List of names of Double Read/Write Attributes to create
-	vector<string>	dynDoubleRWAttrNames;
+	std::vector<std::string>	dynDoubleRWAttrNames;
 	//	DynLongRWAttrNames:	List of names of Long Read/Write Attributes to create
-	vector<string>	dynLongRWAttrNames;
+	std::vector<std::string>	dynLongRWAttrNames;
 	//	DynLongROAttrNames:	List of names of Long Read Only Attributes to create
-	vector<string>	dynLongROAttrNames;
+	std::vector<std::string>	dynLongROAttrNames;
 
 
 //	Constructors and destructors
@@ -80,7 +91,7 @@ public:
 	 *	@param cl	Class.
 	 *	@param s 	Device Name
 	 */
-	DynaTest(Tango::DeviceClass *cl,string &s);
+	DynaTest(Tango::DeviceClass *cl,std::string &s);
 	/**
 	 * Constructs a newly device object.
 	 *
@@ -99,7 +110,7 @@ public:
 	/**
 	 * The device object destructor.
 	 */
-	~DynaTest() {delete_device();};
+	~DynaTest();
 
 
 //	Miscellaneous methods
@@ -126,32 +137,32 @@ public:
 public:
 	//--------------------------------------------------------
 	/*
-	 *	Method      : DynaTest::read_attr_hardware()
-	 *	Description : Hardware acquisition for attributes.
+	 *	Method     : DynaTest::read_attr_hardware()
+	 *	Description: Hardware acquisition for attributes.
 	 */
 	//--------------------------------------------------------
-	virtual void read_attr_hardware(vector<long> &attr_list);
+	virtual void read_attr_hardware(std::vector<long> &attr_list);
 
 //	Dynamic attribute methods
 public:
 
 	/**
 	 *	Attribute DynDoubleRO related methods
-	 *	Description: 
+	 *
 	 *
 	 *	Data type:	Tango::DevDouble
 	 *	Attr type:	Scalar
 	 */
 	virtual void read_DynDoubleRO(Tango::Attribute &attr);
 	virtual bool is_DynDoubleRO_allowed(Tango::AttReqType type);
-	void add_DynDoubleRO_dynamic_attribute(string attname);
-	void remove_DynDoubleRO_dynamic_attribute(string attname);
-	Tango::DevDouble *get_DynDoubleRO_data_ptr(string &name);
-	map<string,Tango::DevDouble>	   DynDoubleRO_data;
+	void add_DynDoubleRO_dynamic_attribute(std::string attname);
+	void remove_DynDoubleRO_dynamic_attribute(std::string attname);
+	Tango::DevDouble *get_DynDoubleRO_data_ptr(std::string &name);
+	std::map<std::string,Tango::DevDouble>	   DynDoubleRO_data;
 
 	/**
 	 *	Attribute DynDoubleRW related methods
-	 *	Description: 
+	 *
 	 *
 	 *	Data type:	Tango::DevDouble
 	 *	Attr type:	Scalar
@@ -159,28 +170,28 @@ public:
 	virtual void read_DynDoubleRW(Tango::Attribute &attr);
 	virtual void write_DynDoubleRW(Tango::WAttribute &attr);
 	virtual bool is_DynDoubleRW_allowed(Tango::AttReqType type);
-	void add_DynDoubleRW_dynamic_attribute(string attname);
-	void remove_DynDoubleRW_dynamic_attribute(string attname);
-	Tango::DevDouble *get_DynDoubleRW_data_ptr(string &name);
-	map<string,Tango::DevDouble>	   DynDoubleRW_data;
+	void add_DynDoubleRW_dynamic_attribute(std::string attname);
+	void remove_DynDoubleRW_dynamic_attribute(std::string attname);
+	Tango::DevDouble *get_DynDoubleRW_data_ptr(std::string &name);
+	std::map<std::string,Tango::DevDouble>	   DynDoubleRW_data;
 
 	/**
 	 *	Attribute DynLongRO related methods
-	 *	Description: 
+	 *
 	 *
 	 *	Data type:	Tango::DevLong
 	 *	Attr type:	Scalar
 	 */
 	virtual void read_DynLongRO(Tango::Attribute &attr);
 	virtual bool is_DynLongRO_allowed(Tango::AttReqType type);
-	void add_DynLongRO_dynamic_attribute(string attname);
-	void remove_DynLongRO_dynamic_attribute(string attname);
-	Tango::DevLong *get_DynLongRO_data_ptr(string &name);
-	map<string,Tango::DevLong>	   DynLongRO_data;
+	void add_DynLongRO_dynamic_attribute(std::string attname);
+	void remove_DynLongRO_dynamic_attribute(std::string attname);
+	Tango::DevLong *get_DynLongRO_data_ptr(std::string &name);
+	std::map<std::string,Tango::DevLong>	   DynLongRO_data;
 
 	/**
 	 *	Attribute DynLongRW related methods
-	 *	Description: 
+	 *
 	 *
 	 *	Data type:	Tango::DevLong
 	 *	Attr type:	Scalar
@@ -188,15 +199,15 @@ public:
 	virtual void read_DynLongRW(Tango::Attribute &attr);
 	virtual void write_DynLongRW(Tango::WAttribute &attr);
 	virtual bool is_DynLongRW_allowed(Tango::AttReqType type);
-	void add_DynLongRW_dynamic_attribute(string attname);
-	void remove_DynLongRW_dynamic_attribute(string attname);
-	Tango::DevLong *get_DynLongRW_data_ptr(string &name);
-	map<string,Tango::DevLong>	   DynLongRW_data;
+	void add_DynLongRW_dynamic_attribute(std::string attname);
+	void remove_DynLongRW_dynamic_attribute(std::string attname);
+	Tango::DevLong *get_DynLongRW_data_ptr(std::string &name);
+	std::map<std::string,Tango::DevLong>	   DynLongRW_data;
 
 	//--------------------------------------------------------
 	/**
-	 *	Method      : DynaTest::add_dynamic_attributes()
-	 *	Description : Add dynamic attributes if any.
+	 *	Method     : DynaTest::add_dynamic_attributes()
+	 *	Description: Add dynamic attributes if any.
 	 */
 	//--------------------------------------------------------
 	void add_dynamic_attributes();
@@ -210,8 +221,8 @@ public:
 
 	//--------------------------------------------------------
 	/**
-	 *	Method      : DynaTest::add_dynamic_commands()
-	 *	Description : Add dynamic commands if any.
+	 *	Method     : DynaTest::add_dynamic_commands()
+	 *	Description: Add dynamic commands if any.
 	 */
 	//--------------------------------------------------------
 	void add_dynamic_commands();

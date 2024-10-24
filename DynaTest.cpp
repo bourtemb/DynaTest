@@ -69,12 +69,12 @@ namespace DynaTest_ns
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::DynaTest()
- *	Description : Constructors for a Tango device
+ *	Method     : DynaTest::DynaTest()
+ *	Description: Constructors for a Tango device
  *                implementing the classDynaTest
  */
 //--------------------------------------------------------
-DynaTest::DynaTest(Tango::DeviceClass *cl, string &s)
+DynaTest::DynaTest(Tango::DeviceClass *cl, std::string &s)
  : TANGO_BASE_CLASS(cl, s.c_str())
 {
 	/*----- PROTECTED REGION ID(DynaTest::constructor_1) ENABLED START -----*/
@@ -100,16 +100,21 @@ DynaTest::DynaTest(Tango::DeviceClass *cl, const char *s, const char *d)
 	
 	/*----- PROTECTED REGION END -----*/	//	DynaTest::constructor_3
 }
+//--------------------------------------------------------
+DynaTest::~DynaTest()
+{
+	delete_device();
+}
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::delete_device()
- *	Description : will be called at device destruction or at init command
+ *	Method     : DynaTest::delete_device()
+ *	Description: will be called at device destruction or at init command
  */
 //--------------------------------------------------------
 void DynaTest::delete_device()
 {
-	DEBUG_STREAM << "DynaTest::delete_device() " << device_name << endl;
+	DEBUG_STREAM << "DynaTest::delete_device() " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(DynaTest::delete_device) ENABLED START -----*/
 	
 	//	Delete device allocated objects
@@ -119,23 +124,23 @@ void DynaTest::delete_device()
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::init_device()
- *	Description : will be called at device initialization.
+ *	Method     : DynaTest::init_device()
+ *	Description: will be called at device initialization.
  */
 //--------------------------------------------------------
 void DynaTest::init_device()
 {
-	DEBUG_STREAM << "DynaTest::init_device() create device " << device_name << endl;
+	DEBUG_STREAM << "DynaTest::init_device() create device " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(DynaTest::init_device_before) ENABLED START -----*/
 	
 	//	Initialization before get_device_property() call
 	
 	/*----- PROTECTED REGION END -----*/	//	DynaTest::init_device_before
-	
+
 
 	//	Get the device properties from database
 	get_device_property();
-	
+
 	/*----- PROTECTED REGION ID(DynaTest::init_device) ENABLED START -----*/
 	
 	//	Initialize device
@@ -145,8 +150,8 @@ void DynaTest::init_device()
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::get_device_property()
- *	Description : Read database to initialize property data members.
+ *	Method     : DynaTest::get_device_property()
+ *	Description: Read database to initialize property data members.
  */
 //--------------------------------------------------------
 void DynaTest::get_device_property()
@@ -171,7 +176,7 @@ void DynaTest::get_device_property()
 		//	Call database and extract values
 		if (Tango::Util::instance()->_UseDb==true)
 			get_db_device()->get_property(dev_prop);
-	
+
 		//	get instance on DynaTestClass to get class property
 		Tango::DbDatum	def_prop, cl_prop;
 		DynaTestClass	*ds_class =
@@ -233,13 +238,13 @@ void DynaTest::get_device_property()
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::always_executed_hook()
- *	Description : method always executed before any command is executed
+ *	Method     : DynaTest::always_executed_hook()
+ *	Description: method always executed before any command is executed
  */
 //--------------------------------------------------------
 void DynaTest::always_executed_hook()
 {
-	DEBUG_STREAM << "DynaTest::always_executed_hook()  " << device_name << endl;
+	DEBUG_STREAM << "DynaTest::always_executed_hook()  " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(DynaTest::always_executed_hook) ENABLED START -----*/
 	
 	//	code always executed before all requests
@@ -249,13 +254,13 @@ void DynaTest::always_executed_hook()
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::read_attr_hardware()
- *	Description : Hardware acquisition for attributes
+ *	Method     : DynaTest::read_attr_hardware()
+ *	Description: Hardware acquisition for attributes
  */
 //--------------------------------------------------------
-void DynaTest::read_attr_hardware(TANGO_UNUSED(vector<long> &attr_list))
+void DynaTest::read_attr_hardware(TANGO_UNUSED(std::vector<long> &attr_list))
 {
-	DEBUG_STREAM << "DynaTest::read_attr_hardware(vector<long> &attr_list) entering... " << endl;
+	DEBUG_STREAM << "DynaTest::read_attr_hardware(std::vector<long> &attr_list) entering... " << std::endl;
 	/*----- PROTECTED REGION ID(DynaTest::read_attr_hardware) ENABLED START -----*/
 	
 	//	Add your own code
@@ -267,7 +272,7 @@ void DynaTest::read_attr_hardware(TANGO_UNUSED(vector<long> &attr_list))
 //--------------------------------------------------------
 /**
  *	Read attribute DynDoubleRO related method
- *	Description: 
+ *
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
@@ -275,7 +280,7 @@ void DynaTest::read_attr_hardware(TANGO_UNUSED(vector<long> &attr_list))
 //--------------------------------------------------------
 void DynaTest::read_DynDoubleRO(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "DynaTest::read_DynDoubleRO(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "DynaTest::read_DynDoubleRO(Tango::Attribute &attr) entering... " << std::endl;
 	Tango::DevDouble	*att_value = get_DynDoubleRO_data_ptr(attr.get_name());
 	/*----- PROTECTED REGION ID(DynaTest::read_DynDoubleRO) ENABLED START -----*/
 	//	Set the attribute value
@@ -286,7 +291,7 @@ void DynaTest::read_DynDoubleRO(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Read attribute DynDoubleRW related method
- *	Description: 
+ *
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
@@ -294,7 +299,7 @@ void DynaTest::read_DynDoubleRO(Tango::Attribute &attr)
 //--------------------------------------------------------
 void DynaTest::read_DynDoubleRW(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "DynaTest::read_DynDoubleRW(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "DynaTest::read_DynDoubleRW(Tango::Attribute &attr) entering... " << std::endl;
 	Tango::DevDouble	*att_value = get_DynDoubleRW_data_ptr(attr.get_name());
 	/*----- PROTECTED REGION ID(DynaTest::read_DynDoubleRW) ENABLED START -----*/
 	//	Set the attribute value
@@ -305,7 +310,7 @@ void DynaTest::read_DynDoubleRW(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Write attribute DynDoubleRW related method
- *	Description: 
+ *
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
@@ -313,7 +318,7 @@ void DynaTest::read_DynDoubleRW(Tango::Attribute &attr)
 //--------------------------------------------------------
 void DynaTest::write_DynDoubleRW(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "DynaTest::write_DynDoubleRW(Tango::WAttribute &attr) entering... " << endl;
+	DEBUG_STREAM << "DynaTest::write_DynDoubleRW(Tango::WAttribute &attr) entering... " << std::endl;
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
@@ -326,7 +331,7 @@ void DynaTest::write_DynDoubleRW(Tango::WAttribute &attr)
 //--------------------------------------------------------
 /**
  *	Read attribute DynLongRO related method
- *	Description: 
+ *
  *
  *	Data type:	Tango::DevLong
  *	Attr type:	Scalar
@@ -334,7 +339,7 @@ void DynaTest::write_DynDoubleRW(Tango::WAttribute &attr)
 //--------------------------------------------------------
 void DynaTest::read_DynLongRO(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "DynaTest::read_DynLongRO(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "DynaTest::read_DynLongRO(Tango::Attribute &attr) entering... " << std::endl;
 	Tango::DevLong	*att_value = get_DynLongRO_data_ptr(attr.get_name());
 	/*----- PROTECTED REGION ID(DynaTest::read_DynLongRO) ENABLED START -----*/
 	//	Set the attribute value
@@ -345,7 +350,7 @@ void DynaTest::read_DynLongRO(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Read attribute DynLongRW related method
- *	Description: 
+ *
  *
  *	Data type:	Tango::DevLong
  *	Attr type:	Scalar
@@ -353,7 +358,7 @@ void DynaTest::read_DynLongRO(Tango::Attribute &attr)
 //--------------------------------------------------------
 void DynaTest::read_DynLongRW(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "DynaTest::read_DynLongRW(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "DynaTest::read_DynLongRW(Tango::Attribute &attr) entering... " << std::endl;
 	Tango::DevLong	*att_value = get_DynLongRW_data_ptr(attr.get_name());
 	/*----- PROTECTED REGION ID(DynaTest::read_DynLongRW) ENABLED START -----*/
 	//	Set the attribute value
@@ -364,7 +369,7 @@ void DynaTest::read_DynLongRW(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Write attribute DynLongRW related method
- *	Description: 
+ *
  *
  *	Data type:	Tango::DevLong
  *	Attr type:	Scalar
@@ -372,7 +377,7 @@ void DynaTest::read_DynLongRW(Tango::Attribute &attr)
 //--------------------------------------------------------
 void DynaTest::write_DynLongRW(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "DynaTest::write_DynLongRW(Tango::WAttribute &attr) entering... " << endl;
+	DEBUG_STREAM << "DynaTest::write_DynLongRW(Tango::WAttribute &attr) entering... " << std::endl;
 	//	Retrieve write value
 	Tango::DevLong	w_val;
 	attr.get_write_value(w_val);
@@ -384,8 +389,8 @@ void DynaTest::write_DynLongRW(Tango::WAttribute &attr)
 }
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::add_dynamic_attributes()
- *	Description : Create the dynamic attributes if any
+ *	Method     : DynaTest::add_dynamic_attributes()
+ *	Description: Create the dynamic attributes if any
  *                for specified device.
  */
 //--------------------------------------------------------
@@ -397,13 +402,13 @@ void DynaTest::add_dynamic_attributes()
 	//	add_DynDoubleRW_dynamic_attribute("MyDynDoubleRWAttribute");
 	//	add_DynLongRO_dynamic_attribute("MyDynLongROAttribute");
 	//	add_DynLongRW_dynamic_attribute("MyDynLongRWAttribute");
-	
+
 	/*----- PROTECTED REGION ID(DynaTest::add_dynamic_attributes) ENABLED START -----*/
 	
 	//	Add your own code to create and add dynamic attributes if any
 	for(auto attr_name:  dynDoubleROAttrNames)
 	{
-		INFO_STREAM << device_name << ":Adding " << attr_name << " Double RO dynamic attribute" << endl; 
+		INFO_STREAM << device_name << ":Adding " << attr_name << " Double RO dynamic attribute" << std::endl; 
 		try
 		{
 			add_DynDoubleRO_dynamic_attribute(attr_name);
@@ -415,7 +420,7 @@ void DynaTest::add_dynamic_attributes()
 	}
 	for(auto attr_name:  dynDoubleRWAttrNames)
 	{
-		INFO_STREAM << device_name << ":Adding " << attr_name << " Double RW dynamic attribute" << endl; 
+		INFO_STREAM << device_name << ":Adding " << attr_name << " Double RW dynamic attribute" << std::endl; 
 		try
 		{
 			add_DynDoubleRW_dynamic_attribute(attr_name);
@@ -427,7 +432,7 @@ void DynaTest::add_dynamic_attributes()
 	}
 	for(auto attr_name:  dynLongROAttrNames)
 	{
-		INFO_STREAM << device_name << ":Adding " << attr_name << " Long RO dynamic attribute" << endl; 
+		INFO_STREAM << device_name << ":Adding " << attr_name << " Long RO dynamic attribute" << std::endl; 
 		try
 		{
 			add_DynLongRO_dynamic_attribute(attr_name);
@@ -439,7 +444,7 @@ void DynaTest::add_dynamic_attributes()
 	}
 	for(auto attr_name:  dynLongRWAttrNames)
 	{
-		INFO_STREAM << device_name << "Adding " << attr_name << " Long RW dynamic attribute" << endl; 
+		INFO_STREAM << device_name << "Adding " << attr_name << " Long RW dynamic attribute" << std::endl; 
 		try
 		{
 			add_DynLongRW_dynamic_attribute(attr_name);
@@ -457,8 +462,8 @@ void DynaTest::add_dynamic_attributes()
 
 //--------------------------------------------------------
 /**
- *	Method      : DynaTest::add_dynamic_commands()
- *	Description : Create the dynamic commands if any
+ *	Method     : DynaTest::add_dynamic_commands()
+ *	Description: Create the dynamic commands if any
  *                for specified device.
  */
 //--------------------------------------------------------
